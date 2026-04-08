@@ -17,7 +17,7 @@ class AdminController extends Controller {
     // Fitur CRUD Alat - Tambah (HANYA SATU SAJA)
     public function tambah_alat() {
         if( $this->model('Alat')->tambahAlat($_POST) > 0 ) {
-            // Setelah simpan, balik ke halaman utama (tabel)
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Menambah alat baru: ' . $_POST['nama_alat']);
             header('Location: ' . BASEURL . '/AdminController');
             exit;
         }
@@ -42,8 +42,8 @@ class AdminController extends Controller {
 
     // 2. Memproses perubahan data ke database
     public function edit_alat() {
-        // Pastikan nama method-nya sama: ubahDataAlat
         if( $this->model('Alat')->ubahDataAlat($_POST) > 0 ) {
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Mengedit data alat: ' . $_POST['nama_alat']);
             header('Location: ' . BASEURL . '/AdminController');
             exit;
         } else {
@@ -53,7 +53,10 @@ class AdminController extends Controller {
     }
 
     public function hapus_alat($id) {
+        $alat = $this->model('Alat')->getAlatById($id);
+        $nama_alat = $alat ? $alat['nama_alat'] : 'alat musik';
         if($this->model('Alat')->hapusAlat($id) > 0) {
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Menghapus alat: ' . $nama_alat);
             header('Location: ' . BASEURL . '/AdminController');
             exit;
         }
@@ -112,13 +115,11 @@ class AdminController extends Controller {
 
     public function kembalikan($id)
     {
-        // Ini buat manggil model Pinjam dan jalanin fungsi prosesKembali
         if ($this->model('Pinjam')->prosesKembali($id) > 0) {
-            // Kalau berhasil, balik ke dashboard peminjaman
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Memproses pengembalian alat, pinjam #' . $id);
             header('Location: ' . BASEURL . '/AdminController/peminjaman');
             exit;
         } else {
-            // Kalau gagal atau gak ada perubahan
             header('Location: ' . BASEURL . '/AdminController/peminjaman');
             exit;
         }
@@ -127,8 +128,7 @@ class AdminController extends Controller {
     public function log() {
         $data['judul'] = 'Log Aktivitas';
         $data['logs'] = $this->model('Log')->getAllLog();
-        
-        // Kita panggil view admin/log
         $this->view('admin/log', $data);
     }
+
 }

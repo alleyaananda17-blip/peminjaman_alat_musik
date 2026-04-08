@@ -20,15 +20,15 @@ class PeminjamController extends Controller {
     }
 
     public function prosesPinjam() {
-        // Memanggil fungsi yang baru kita buat di atas
         if ($this->model('Pinjam_model')->tambahDataPeminjaman($_POST) > 0) {
-            // Jika berhasil, tampilkan pesan sukses
+            $alat = $this->model('Alat_model')->getAlatById($_POST['id_alat']);
+            $nama_alat = $alat ? $alat['nama_alat'] : 'alat musik';
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Mengajukan peminjaman: ' . $nama_alat);
             echo "<script>
                     alert('Peminjaman Berhasil! Silakan ambil alat di petugas.');
                     window.location.href='" . BASEURL . "/PeminjamController';
                 </script>";
         } else {
-            // Jika gagal
             echo "<script>
                     alert('Gagal melakukan peminjaman.');
                     window.history.back();
@@ -48,5 +48,13 @@ class PeminjamController extends Controller {
         $data['judul'] = 'Riwayat';
         $data['riwayat'] = $this->model('Pinjam_model')->getPinjamByUser($_SESSION['id_user']);
         $this->view('peminjam/riwayat', $data);
+    }
+
+    public function hapusAkun() {
+        $id_user = $_SESSION['id_user'];
+        $this->model('User')->hapusAkun($id_user);
+        session_destroy();
+        header('Location: ' . BASEURL . '/AuthController/login');
+        exit;
     }
 }

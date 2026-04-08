@@ -22,7 +22,10 @@ class AuthController extends Controller {
             
             $_SESSION['id_user'] = $user['id_user'];
             $_SESSION['role'] = $user['role'];
-            $_SESSION['nama'] = $user['nama_lengkap'];
+            $_SESSION['nama'] = $user['nama_lengkap'] ?: $user['username'];
+
+            // Catat log login
+            $this->model('Log')->tambahLog($user['id_user'], 'Login ke sistem sebagai ' . $user['role']);
 
             // Pengecekan Role yang lebih spesifik
             if ($user['role'] == 'admin') {

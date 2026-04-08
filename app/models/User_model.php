@@ -9,8 +9,7 @@ class User_model {
     }
 
     public function register($data) {
-    // Tambahkan pengecekan agar tidak error "Undefined array key"
-    $nama = isset($data['nama_lengkap']) ? $data['nama_lengkap'] : '';
+    $nama = isset($data['nama']) ? $data['nama'] : (isset($data['nama_lengkap']) ? $data['nama_lengkap'] : '');
     $username = $data['username'];
     
     // Cek apakah username sudah ada

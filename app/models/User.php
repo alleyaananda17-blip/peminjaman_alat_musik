@@ -16,6 +16,18 @@ class User {
 
     public function getAllUser() {
         $this->db->query("SELECT * FROM " . $this->table);
-        return $this->db->resultSet(); // Wajib ada return resultSet()
+        return $this->db->resultSet();
+    }
+
+    public function hapusAkun($id_user) {
+        // Hapus data peminjaman dulu baru hapus akun
+        $this->db->query("DELETE FROM peminjaman WHERE id_user = :id_user");
+        $this->db->bind(':id_user', $id_user);
+        $this->db->execute();
+
+        $this->db->query("DELETE FROM " . $this->table . " WHERE id_user = :id_user");
+        $this->db->bind(':id_user', $id_user);
+        $this->db->execute();
+        return $this->db->rowCount();
     }
 }

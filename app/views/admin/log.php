@@ -1,89 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $data['judul']; ?></title>
+    <title><?= $data['judul']; ?> - MusicRent</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #f4f7f6; }
-        .sidebar { background-color: #1a3a5f; min-height: 100vh; color: white; position: fixed; width: 16.666667%; }
-        .sidebar a { color: rgba(255,255,255,0.7); text-decoration: none; padding: 15px 25px; display: block; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.1); color: white; border-left: 5px solid #0d6efd; }
-        .main-content { margin-left: 16.666667%; padding: 40px; }
-        .card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #f0f2f5; margin: 0; }
+        .sidebar { position: fixed; top: 0; left: 0; width: 260px; height: 100vh; background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); z-index: 100; display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.15); }
+        .sidebar-brand { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .sidebar-brand h4 { color: #fff; font-weight: 700; font-size: 1.2rem; margin: 0; display: flex; align-items: center; gap: 10px; }
+        .brand-icon { width: 36px; height: 36px; background: #6d28d9; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .sidebar-label { padding: 20px 24px 8px; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+        .sidebar nav a { display: flex; align-items: center; gap: 12px; padding: 12px 24px; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .sidebar nav a.active { color: #fff; background: rgba(109,40,217,0.25); border-left-color: #7c3aed; }
+        .sidebar nav a i { width: 18px; text-align: center; font-size: 0.9rem; }
+        .sidebar-footer { margin-top: auto; padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.07); }
+        .sidebar-footer a { display: flex; align-items: center; gap: 10px; color: #f87171; text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 10px 12px; border-radius: 8px; transition: 0.2s; }
+        .sidebar-footer a:hover { background: rgba(248,113,113,0.1); }
+        .main-content { margin-left: 260px; padding: 32px; min-height: 100vh; }
+        .topbar { margin-bottom: 28px; }
+        .topbar h2 { font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0; }
+        .topbar p { color: #64748b; margin: 4px 0 0; font-size: 0.875rem; }
+        .table-card { background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); overflow: hidden; }
+        .table-card-header { padding: 20px 24px; border-bottom: 1px solid #f1f5f9; }
+        .table-card-header h5 { font-weight: 600; color: #0f172a; margin: 0; }
+        .table thead th { background: #f8fafc; color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 12px 16px; border: none; }
+        .table tbody td { padding: 14px 16px; border-color: #f1f5f9; vertical-align: middle; }
+        .table tbody tr:hover { background: #fafbfc; }
+        .log-dot { width: 8px; height: 8px; border-radius: 50%; background: #6d28d9; display: inline-block; margin-right: 8px; flex-shrink: 0; }
+        .user-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #4c1d95; color: #fff;
+            border-radius: 20px; padding: 5px 14px;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+        }
+        .user-badge i { font-size: 0.65rem; opacity: 0.85; }
+        .log-message { display: flex; align-items: center; }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2 sidebar p-0">
-            <div class="p-4 mb-3">
-                <h4 class="fw-bold"><i class="fas fa-guitar me-2"></i> MusicRent</h4>
-            </div>
-            <nav>
-                <a href="<?= BASEURL; ?>/AdminController"><i class="fas fa-home me-2"></i> Dashboard</a>
-                <a href="<?= BASEURL; ?>/AdminController/user"><i class="fas fa-users me-2"></i> Manajemen User</a>
-                <a href="<?= BASEURL; ?>/AdminController/peminjaman"><i class="fas fa-history me-2"></i> Peminjaman</a>
-                <a href="<?= BASEURL; ?>/AdminController/log" class="active"><i class="fas fa-list me-2"></i> Log Aktivitas</a>
-                <div class="mt-5">
-                    <a href="<?= BASEURL; ?>/AuthController/logout" class="text-danger"><i class="fas fa-sign-out-alt me-2"></i> Keluar</a>
-                </div>
-            </nav>
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h4><div class="brand-icon"><i class="fas fa-guitar fa-sm text-white"></i></div> MusicRent</h4>
+    </div>
+    <div class="sidebar-label">Menu</div>
+    <nav>
+        <a href="<?= BASEURL; ?>/AdminController"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="<?= BASEURL; ?>/AdminController/user"><i class="fas fa-users"></i> Manajemen User</a>
+        <a href="<?= BASEURL; ?>/AdminController/peminjaman"><i class="fas fa-exchange-alt"></i> Peminjaman</a>
+        <a href="<?= BASEURL; ?>/AdminController/log" class="active"><i class="fas fa-clipboard-list"></i> Log Aktivitas</a>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="<?= BASEURL; ?>/AuthController/logout"><i class="fas fa-sign-out-alt"></i> Keluar</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="topbar">
+        <h2>Log Aktivitas</h2>
+        <p>Pantau seluruh catatan sistem dan aktivitas pengguna.</p>
+    </div>
+
+    <div class="table-card">
+        <div class="table-card-header">
+            <h5>Riwayat Aktivitas</h5>
         </div>
-
-        <div class="col-md-10 main-content">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="fw-bold text-dark">Riwayat Aktivitas</h2>
-                    <p class="text-muted">Pantau seluruh catatan sistem dan aktivitas pengguna.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th class="ps-4 py-3" width="80">No</th>
-                                    <th>Waktu</th>
-                                    <th>User</th>
-                                    <th>Aktivitas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if(empty($data['logs'])) : ?>
-                                    <tr>
-                                        <td colspan="4" class="text-center py-5 text-muted">Belum ada data log aktivitas.</td>
-                                    </tr>
-                                <?php endif; ?>
-
-                                <?php $i = 1; foreach($data['logs'] as $log) : ?>
-                                <tr>
-                                    <td class="ps-4 fw-bold text-dark"><?= $i++; ?></td>
-                                    <td>
-                                        <div class="text-dark fw-bold"><?= date('d M Y', strtotime($log['waktu'])); ?></div>
-                                        <small class="text-muted"><i class="far fa-clock me-1"></i> <?= date('H:i', strtotime($log['waktu'])); ?> WIB</small>
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-info text-white px-3">
-                                            <?= strtoupper($log['username']); ?>
-                                        </span>
-                                    </td>
-                                    <td class="text-dark fw-bold"><?= $log['pesan']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th style="width:60px">No</th>
+                        <th>Waktu</th>
+                        <th>User</th>
+                        <th>Aktivitas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if(empty($data['logs'])) : ?>
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="fas fa-inbox fa-2x mb-2 d-block opacity-30"></i>
+                                Belum ada data log aktivitas.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php $i = 1; foreach($data['logs'] as $log) : ?>
+                    <tr>
+                        <td class="fw-semibold text-muted"><?= $i++; ?></td>
+                        <td>
+                            <div class="fw-semibold text-dark small"><?= date('d M Y', strtotime($log['waktu'])); ?></div>
+                            <div class="text-muted" style="font-size:0.75rem;"><?= date('H:i', strtotime($log['waktu'])); ?> WIB</div>
+                        </td>
+                        <td>
+                            <span class="user-badge">
+                                <i class="fas fa-user"></i>
+                                <?= strtoupper($log['username']); ?>
+                            </span>
+                        </td>
+                        <td>
+                            <div class="log-message">
+                                <span class="log-dot"></span>
+                                <span class="text-dark"><?= $log['pesan']; ?></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

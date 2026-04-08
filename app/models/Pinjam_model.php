@@ -12,7 +12,7 @@ class Pinjam_model {
     // Mengambil semua data peminjaman untuk laporan petugas
     public function getAllPinjam()
     {
-        $query = "SELECT peminjaman.*, users.nama_lengkap, alat_musik.nama_alat 
+        $query = "SELECT peminjaman.*, users.nama_lengkap, users.username, alat_musik.nama_alat 
                   FROM " . $this->table . "
                   JOIN users ON peminjaman.id_user = users.id_user
                   JOIN alat_musik ON peminjaman.id_alat = alat_musik.id_alat";

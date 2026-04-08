@@ -26,6 +26,7 @@ class PetugasController extends Controller {
 
     public function prosesSetuju($id) {
         if( $this->model('Pinjam_model')->updateStatus($id, 'dipinjam') > 0 ) {
+            $this->model('Log')->tambahLog($_SESSION['id_user'], 'Menyetujui peminjaman ID: ' . $id);
             header('Location: ' . BASEURL . '/PetugasController/persetujuan');
             exit;
         }
