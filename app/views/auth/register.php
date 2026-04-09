@@ -47,7 +47,7 @@
                 <label class="form-label">Nama Lengkap</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-id-card fa-sm"></i></span>
-                    <input type="text" name="nama" class="form-control" placeholder="Nama lengkap kamu" required autocomplete="new-password">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama lengkap kamu (min. 5 karakter)" required autocomplete="new-password" minlength="5">
                 </div>
             </div>
             <div class="mb-3">

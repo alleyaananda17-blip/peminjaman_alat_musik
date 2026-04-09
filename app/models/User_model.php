@@ -9,13 +9,18 @@ class User_model {
     }
 
     public function register($data) {
-    $nama = isset($data['nama']) ? $data['nama'] : (isset($data['nama_lengkap']) ? $data['nama_lengkap'] : '');
-    $username = $data['username'];
-    
-    // Cek apakah username sudah ada
-    if($this->getUserByUsername($username)) {
-        return 0; 
-    }
+        $nama = isset($data['nama']) ? trim($data['nama']) : (isset($data['nama_lengkap']) ? trim($data['nama_lengkap']) : '');
+        $username = $data['username'];
+
+        // Validasi nama minimal 5 karakter
+        if(strlen($nama) < 5) {
+            return 0;
+        }
+
+        // Cek apakah username sudah ada
+        if($this->getUserByUsername($username)) {
+            return 0;
+        }
 
     try {
         $query = "INSERT INTO users (nama_lengkap, username, password, role) 

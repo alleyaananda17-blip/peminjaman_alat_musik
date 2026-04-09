@@ -127,7 +127,7 @@
                 <div class="trx-num"><?= $i++; ?></div>
                 <div class="trx-avatar"><?= strtoupper(substr($p['nama_lengkap'] ?: $p['username'], 0, 1)); ?></div>
                 <div class="trx-info">
-                    <h6><?= $p['nama_lengkap'] ?: $p['username']; ?></h6>
+                    <h6><?= $p['nama_lengkap'] ?: '<span style="color:#ef4444;font-size:0.8rem;">Nama belum diisi</span>'; ?></h6>
                     <div class="trx-alat"><i class="fas fa-guitar"></i><?= $p['nama_alat']; ?></div>
                 </div>
                 <div class="trx-date">

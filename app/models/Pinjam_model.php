@@ -65,7 +65,12 @@ class Pinjam_model {
 
     public function getLaporanProsedur()
     {
-        $this->db->query("CALL cetak_laporan_peminjaman()");
+        $query = "SELECT peminjaman.*, users.nama_lengkap, users.username, alat_musik.nama_alat
+                  FROM peminjaman
+                  JOIN alat_musik ON peminjaman.id_alat = alat_musik.id_alat
+                  LEFT JOIN users ON peminjaman.id_user = users.id_user
+                  ORDER BY peminjaman.tgl_pinjam DESC";
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 

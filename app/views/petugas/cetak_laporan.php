@@ -31,7 +31,7 @@
             <?php $i = 1; foreach($data['pinjam'] as $p) : ?>
             <tr>
                 <td><?= $i++; ?></td>
-                <td><?= $p['nama_lengkap'] ?: ($p['username'] ?? '-'); ?></td>
+                <td><?= $p['nama_lengkap'] ?: '(nama belum diisi)'; ?></td>
                 <td><?= $p['nama_alat']; ?></td>
                 <td><?= $p['tgl_pinjam']; ?></td>
                 <td><?= strtoupper($p['status']); ?></td>

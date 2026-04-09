@@ -56,13 +56,16 @@ public function register() {
 }
 
     public function prosesRegister() {
-    // Mengecek apakah ada data yang masuk (rowCount > 0)
-    if( $this->model('User_model')->register($_POST) > 0 ) {
-        // Jika berhasil, lempar ke halaman login
-        header('Location: ' . BASEURL . '/Auth/login');
-        exit;
-    } else {
-        echo "Gagal Registrasi, tidak ada data yang tersimpan.";
+        if( $this->model('User_model')->register($_POST) > 0 ) {
+            header('Location: ' . BASEURL . '/AuthController/login');
+            exit;
+        } else {
+            $nama = trim($_POST['nama'] ?? '');
+            if(strlen($nama) < 5) {
+                echo "<script>alert('Nama lengkap minimal 5 karakter!'); window.history.back();</script>";
+            } else {
+                echo "<script>alert('Username sudah digunakan, coba yang lain.'); window.history.back();</script>";
+            }
+        }
     }
-}
 }

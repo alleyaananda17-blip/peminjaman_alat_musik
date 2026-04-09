@@ -6,11 +6,14 @@ class App {
 
     public function __construct() {
         $url = $this->parseURL();
-        if(isset($url[0]) && file_exists('../app/controllers/' . $url[0] . '.php')) {
+        $controllerPath = dirname(__DIR__) . '/controllers/' . (isset($url[0]) ? $url[0] : $this->controller) . '.php';
+
+        if(isset($url[0]) && file_exists($controllerPath)) {
             $this->controller = $url[0];
             unset($url[0]);
         }
-        require_once '../app/controllers/' . $this->controller . '.php';
+
+        require_once dirname(__DIR__) . '/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         if(isset($url[1])) {
