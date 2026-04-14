@@ -56,11 +56,26 @@ class Pinjam_model {
 
     public function updateStatus($id, $status)
     {
+        // Ambil id_alat dulu
+        $this->db->query("SELECT id_alat FROM " . $this->table . " WHERE id_pinjam = :id");
+        $this->db->bind('id', $id);
+        $pinjam = $this->db->single();
+
+        // Update status peminjaman
         $query = "UPDATE " . $this->table . " SET status = :status WHERE id_pinjam = :id";
         $this->db->query($query);
         $this->db->bind('status', $status);
         $this->db->bind('id', $id);
-        return $this->db->execute();
+        $this->db->execute();
+
+        // Kurangi stok alat saat disetujui
+        if ($status == 'dipinjam' && $pinjam) {
+            $this->db->query("UPDATE alat_musik SET stok = stok - 1 WHERE id_alat = :id_alat AND stok > 0");
+            $this->db->bind('id_alat', $pinjam['id_alat']);
+            $this->db->execute();
+        }
+
+        return $this->db->rowCount();
     }
 
     public function getLaporanProsedur()
@@ -83,7 +98,7 @@ class Pinjam_model {
     $this->db->bind('id_user', $_SESSION['id_user']); // Pastikan session id_user ada
     $this->db->bind('id_alat', $data['id_alat']);
     $this->db->bind('tgl_pinjam', date('Y-m-d'));
-    $this->db->bind('status', 'dipinjam');
+    $this->db->bind('status', 'pending');
 
     return $this->db->execute();
 }

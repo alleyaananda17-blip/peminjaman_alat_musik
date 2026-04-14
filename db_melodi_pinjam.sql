@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql207.byetcluster.com
--- Generation Time: Apr 10, 2026 at 10:05 AM
+-- Generation Time: Apr 13, 2026 at 10:37 PM
 -- Server version: 11.4.10-MariaDB
 -- PHP Version: 7.2.22
 
@@ -42,16 +42,16 @@ CREATE TABLE `alat_musik` (
 --
 
 INSERT INTO `alat_musik` (`id_alat`, `nama_alat`, `kategori`, `kategori_id`, `stok`, `harga_denda_perhari`) VALUES
-(41, 'Gitar Listrik', NULL, 10, 5, NULL),
 (42, 'suling', NULL, 4, 2, NULL),
-(45, 'sasando', NULL, 10, 4, NULL),
-(47, 'drum', NULL, 15, 2, NULL),
-(48, 'gitar', NULL, 10, 2, NULL),
-(50, 'angklung', NULL, 7, 4, NULL),
+(45, 'sasando', NULL, 10, 7, NULL),
+(47, 'drum', NULL, 15, 3, NULL),
+(48, 'gitar', NULL, 10, 3, NULL),
+(50, 'angklung', NULL, 7, 5, NULL),
 (51, 'bola', NULL, 6, 4, NULL),
 (52, 'saksofon', NULL, 4, 5, NULL),
 (53, 'ukulele', NULL, 10, 3, NULL),
-(54, 'gendang', NULL, 15, 6, NULL);
+(54, 'gendang', NULL, 15, 6, NULL),
+(55, 'suling', NULL, 4, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,70 @@ INSERT INTO `log_aktivitas` (`id_log`, `id_user`, `pesan`, `waktu`) VALUES
 (58, 19, 'Mengajukan peminjaman: drum', '2026-04-10 04:57:02'),
 (59, 67, 'Login ke sistem sebagai peminjam', '2026-04-10 05:01:10'),
 (60, 67, 'Login ke sistem sebagai peminjam', '2026-04-10 05:01:44'),
-(61, 67, 'Mengajukan peminjaman: drum', '2026-04-10 05:02:05');
+(61, 67, 'Mengajukan peminjaman: drum', '2026-04-10 05:02:05'),
+(62, 17, 'Login ke sistem sebagai admin', '2026-04-11 09:44:53'),
+(63, 18, 'Login ke sistem sebagai petugas', '2026-04-12 03:18:09'),
+(64, 64, 'Login ke sistem sebagai peminjam', '2026-04-12 06:21:04'),
+(65, 18, 'Login ke sistem sebagai petugas', '2026-04-12 06:30:43'),
+(66, 69, 'Login ke sistem sebagai peminjam', '2026-04-12 06:31:59'),
+(67, 69, 'Login ke sistem sebagai peminjam', '2026-04-12 06:48:44'),
+(68, 69, 'Login ke sistem sebagai peminjam', '2026-04-12 06:49:37'),
+(69, 17, 'Login ke sistem sebagai admin', '2026-04-12 06:50:03'),
+(70, 18, 'Login ke sistem sebagai petugas', '2026-04-12 17:41:53'),
+(71, 17, 'Login ke sistem sebagai admin', '2026-04-12 17:55:37'),
+(72, 17, 'Memproses pengembalian alat, pinjam #15', '2026-04-12 17:56:14'),
+(73, 17, 'Menambah alat baru: suling', '2026-04-12 17:57:08'),
+(74, 17, 'Mengedit data alat: Gitar Listrik', '2026-04-12 17:57:24'),
+(75, 17, 'Menghapus alat: Gitar Listrik', '2026-04-12 17:57:29'),
+(76, 18, 'Login ke sistem sebagai petugas', '2026-04-12 17:58:17'),
+(77, 18, 'Menyetujui peminjaman ID: 16', '2026-04-12 17:58:37'),
+(78, 17, 'Login ke sistem sebagai admin', '2026-04-12 17:59:32'),
+(79, 17, 'Memproses pengembalian alat, pinjam #16', '2026-04-12 17:59:42'),
+(80, 17, 'Memproses pengembalian alat, pinjam #23', '2026-04-12 17:59:45'),
+(81, 17, 'Memproses pengembalian alat, pinjam #18', '2026-04-12 17:59:52'),
+(82, 18, 'Login ke sistem sebagai petugas', '2026-04-12 18:00:02'),
+(83, 70, 'Login ke sistem sebagai peminjam', '2026-04-12 18:00:51'),
+(84, 70, 'Mengajukan peminjaman: sasando', '2026-04-12 18:01:05'),
+(85, 70, 'Mengajukan peminjaman: drum', '2026-04-12 18:01:20'),
+(86, 18, 'Login ke sistem sebagai petugas', '2026-04-12 18:01:55'),
+(87, 18, 'Menyetujui peminjaman ID: 29', '2026-04-12 18:02:11'),
+(88, 70, 'Login ke sistem sebagai peminjam', '2026-04-12 18:02:28'),
+(89, 70, 'Mengajukan peminjaman: suling', '2026-04-12 18:02:43'),
+(90, 18, 'Login ke sistem sebagai petugas', '2026-04-12 18:02:58'),
+(91, 18, 'Menyetujui peminjaman ID: 30', '2026-04-12 18:03:08'),
+(92, 70, 'Login ke sistem sebagai peminjam', '2026-04-12 18:03:18'),
+(93, 17, 'Login ke sistem sebagai admin', '2026-04-13 03:10:57'),
+(94, 18, 'Login ke sistem sebagai petugas', '2026-04-13 03:12:09'),
+(95, 17, 'Login ke sistem sebagai admin', '2026-04-13 03:12:27'),
+(96, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 03:13:13'),
+(97, 69, 'Mengajukan peminjaman: sasando', '2026-04-13 03:14:08'),
+(98, 18, 'Login ke sistem sebagai petugas', '2026-04-13 03:14:24'),
+(99, 18, 'Menyetujui peminjaman ID: 31', '2026-04-13 03:14:35'),
+(100, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 03:15:00'),
+(101, 69, 'Mengajukan peminjaman: sasando', '2026-04-13 05:22:31'),
+(102, 18, 'Login ke sistem sebagai petugas', '2026-04-13 05:26:46'),
+(103, 18, 'Menyetujui peminjaman ID: 32', '2026-04-13 05:26:55'),
+(104, 18, 'Menyetujui peminjaman ID: 32', '2026-04-13 05:27:02'),
+(105, 18, 'Menyetujui peminjaman ID: 31', '2026-04-13 05:27:09'),
+(106, 18, 'Menyetujui peminjaman ID: 18', '2026-04-13 05:27:16'),
+(107, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 05:27:43'),
+(108, 69, 'Mengajukan peminjaman: angklung', '2026-04-13 05:29:24'),
+(109, 18, 'Login ke sistem sebagai petugas', '2026-04-13 05:29:38'),
+(110, 18, 'Menyetujui peminjaman ID: 33', '2026-04-13 05:29:47'),
+(111, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 05:29:59'),
+(112, 69, 'Mengajukan peminjaman: drum', '2026-04-13 05:30:08'),
+(113, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 05:30:21'),
+(114, 18, 'Login ke sistem sebagai petugas', '2026-04-13 05:30:34'),
+(115, 18, 'Menyetujui peminjaman ID: 34', '2026-04-13 05:30:42'),
+(116, 18, 'Menyetujui peminjaman ID: 34', '2026-04-13 05:30:49'),
+(117, 69, 'Login ke sistem sebagai peminjam', '2026-04-13 05:30:59'),
+(118, 17, 'Login ke sistem sebagai admin', '2026-04-13 05:31:15'),
+(119, 17, 'Memproses pengembalian alat, pinjam #18', '2026-04-13 05:31:30'),
+(120, 17, 'Memproses pengembalian alat, pinjam #24', '2026-04-13 05:31:34'),
+(121, 17, 'Memproses pengembalian alat, pinjam #33', '2026-04-13 05:31:38'),
+(122, 17, 'Memproses pengembalian alat, pinjam #34', '2026-04-13 05:31:43'),
+(123, 17, 'Memproses pengembalian alat, pinjam #31', '2026-04-13 05:31:51'),
+(124, 17, 'Memproses pengembalian alat, pinjam #25', '2026-04-13 05:31:56');
 
 -- --------------------------------------------------------
 
@@ -139,7 +202,7 @@ CREATE TABLE `peminjaman` (
   `id_alat` int(11) DEFAULT NULL,
   `tgl_pinjam` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
-  `status` enum('dipinjam','kembali') DEFAULT 'dipinjam'
+  `status` enum('pending','dipinjam','kembali') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -147,15 +210,20 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id_pinjam`, `nama_peminjam`, `id_user`, `id_alat`, `tgl_pinjam`, `tgl_kembali`, `status`) VALUES
-(15, NULL, 53, 41, '2026-03-11', NULL, 'dipinjam'),
-(16, NULL, 53, 47, '2026-03-11', NULL, 'dipinjam'),
-(17, NULL, 19, 41, '2026-03-11', NULL, 'dipinjam'),
-(18, NULL, 19, 45, '2026-03-11', NULL, 'dipinjam'),
-(23, NULL, 64, 47, '2026-04-10', NULL, 'dipinjam'),
-(24, NULL, 66, 48, '2026-04-10', NULL, 'dipinjam'),
-(25, NULL, 66, 50, '2026-04-10', NULL, 'dipinjam'),
+(16, NULL, 53, 47, '2026-03-11', '2026-04-12', 'kembali'),
+(18, NULL, 19, 45, '2026-03-11', '2026-04-13', 'kembali'),
+(23, NULL, 64, 47, '2026-04-10', '2026-04-12', 'kembali'),
+(24, NULL, 66, 48, '2026-04-10', '2026-04-13', 'kembali'),
+(25, NULL, 66, 50, '2026-04-10', '2026-04-13', 'kembali'),
 (26, NULL, 19, 47, '2026-04-10', NULL, 'dipinjam'),
-(27, NULL, 67, 47, '2026-04-10', NULL, 'dipinjam');
+(27, NULL, 67, 47, '2026-04-10', NULL, 'dipinjam'),
+(28, NULL, 70, 45, '2026-04-12', NULL, 'dipinjam'),
+(29, NULL, 70, 47, '2026-04-12', NULL, 'dipinjam'),
+(30, NULL, 70, 42, '2026-04-12', NULL, 'dipinjam'),
+(31, NULL, 69, 45, '2026-04-13', '2026-04-13', 'kembali'),
+(32, NULL, 69, 45, '2026-04-13', NULL, 'dipinjam'),
+(33, NULL, 69, 50, '2026-04-13', '2026-04-13', 'kembali'),
+(34, NULL, 69, 47, '2026-04-13', '2026-04-13', 'kembali');
 
 -- --------------------------------------------------------
 
@@ -187,7 +255,10 @@ INSERT INTO `users` (`id_user`, `nama_lengkap`, `username`, `password`, `role`) 
 (64, 'Birli Aulia', 'birli', '$2y$10$qOr4W4wABKZxTqlfZOOi8.3T/20wmpkSadLdIATjnAjdmRPCaxxZy', 'peminjam'),
 (65, 'nadia danakitri arya putri', 'nadia', '$2y$10$qGBmq9EuRsSfRtbp.xyOquOxKKnCICmCQReKBf4jZanIEy5ug.AhC', 'peminjam'),
 (66, 'Reykal alyuga putra maulana', 'kal kel kol', '$2y$10$q5TUXA6mGpsC6yr5CmqVQOfVGimcT/t2xTmcI4vKjIYsi3TTpHiP6', 'peminjam'),
-(67, 'ucokk', 'ucokk', '$2y$10$hvEUpH3OzP47owtj4j/P.efS53Spm9Fn01//kYzxO1.nhiTqWyWZK', 'peminjam');
+(67, 'ucokk', 'ucokk', '$2y$10$hvEUpH3OzP47owtj4j/P.efS53Spm9Fn01//kYzxO1.nhiTqWyWZK', 'peminjam'),
+(68, 'syakira jasmin', 'syakira', '$2y$10$MEFixia2ZejenR2EZbAMR.8PF/mgpnFXZVryo8BZngWAMLN7CdaC6', 'peminjam'),
+(69, 'allea ananda putri', 'allea', '$2y$10$N6SuTM9poCjAAPl9YpPHwuHuuyS10FfrTAjhkLsR3EojqKmOxulkS', 'peminjam'),
+(70, 'rika witri', 'rika', '$2y$10$aybjtT.ol3LF4VzTp8Vsk./Mv93/hu8vVhvrX7bsyG7r47kKh36xi', 'peminjam');
 
 --
 -- Indexes for dumped tables
@@ -236,7 +307,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alat_musik`
 --
 ALTER TABLE `alat_musik`
-  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -248,19 +319,19 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Constraints for dumped tables
